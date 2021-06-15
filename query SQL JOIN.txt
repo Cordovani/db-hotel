@@ -1,0 +1,36 @@
+----------------------------------------------------------------------------------------------------
+	1.Come si chiamano gli ospiti che hanno fatto più di due prenotazioni?
+
+SELECT ospiti.name, ospiti.lastname
+FROM `prenotazioni_has_ospiti` 
+INNER JOIN `ospiti`
+ON prenotazioni_has_ospiti.ospite_id = ospiti.id;
+
+----------------------------------------------------------------------------------------------------
+	2.Stampare tutti gli ospiti per ogni prenotazione
+
+SELECT prenotazioni_has_ospiti.ospite_id AS ospite, prenotazioni_has_ospiti.prenotazione_id as prenotazione
+FROM `prenotazioni_has_ospiti` 
+JOIN `ospiti`
+ON prenotazioni_has_ospiti.ospite_id = ospiti.id;
+
+----------------------------------------------------------------------------------------------------
+	3.Stampare Nome, Cognome, Prezzo e Pagante per tutte le prenotazioni fatte a Maggio 2018
+
+ 
+
+
+
+
+
+
+----------------------------------------------------------------------------------------------------
+	4.Fai la somma di tutti i prezzi delle prenotazioni per le stanze del primo piano
+
+SELECT SUM(`pagamenti`.`price`)
+FROM `pagamenti` 
+	INNER JOIN `prenotazioni`
+    	ON `prenotazioni`.`id` = `pagamenti`.`prenotazione_id`
+	INNER JOIN `stanze`
+    	ON `stanze`.`id` = `prenotazioni`.`stanza_id`
+WHERE `stanze`.`floor` = 1
